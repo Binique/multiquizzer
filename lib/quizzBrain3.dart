@@ -3,10 +3,10 @@ import 'question.dart';
 class  QuizzBrain3 {
   int _questionNumber3 = 0;
   List<Question>_Questions3= [
-    Question('Question 1', true),
-    Question('Bienvenue 1', false),
-    Question('Question 3', false),
-    Question('Question 4', true),
+    Question("Un éthylabélophile collectionne les étiquettes de bouteilles d'alcool ?", true),
+    Question("Elvis Presley interprète l'un de ses plus grands succès Love Me Tender dans le film de même nom ?", true),
+    Question("La constellation d'Orion est aussi appelée Le Chasseur ?", true),
+    Question('Calamity Jane est uniquement un personnage de fiction ?', true),
   ];
 
   String getQuestionText3() {
