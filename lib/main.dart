@@ -125,6 +125,7 @@ class _QuizzerState extends State<Quizzer> {
                 ),
               )
             ]).show();
+
         score = 0;
         IconResult = [];
       }
@@ -234,7 +235,7 @@ class _Quizzer2State extends State<Quizzer2> {
             DialogButton(
               onPressed: () {
                 Navigator.pop(context);
-                quizzBrain.reset();
+                quizzBrain2.reset2();
                 Navigator.pop(context);
               },
               child: Text(
@@ -243,6 +244,7 @@ class _Quizzer2State extends State<Quizzer2> {
               ),
             )
           ]).show();
+
       score2 = 0;
       IconResult = [];
     }
@@ -351,7 +353,7 @@ class _Quizzer3State extends State<Quizzer3> {
             DialogButton(
               onPressed: () {
                 Navigator.pop(context);
-                quizzBrain.reset();
+                quizzBrain3.reset3();
                 Navigator.pop(context);
               },
               child: Text(
@@ -360,6 +362,7 @@ class _Quizzer3State extends State<Quizzer3> {
               ),
             )
           ]).show();
+
       score3 = 0;
       IconResult = [];
     }
