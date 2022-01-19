@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'quizzBrain.dart';
-import 'package:rflutter_alert/rflutter_alert.dart' show Alert;
+import 'package:rflutter_alert/rflutter_alert.dart' show Alert, DialogButton;
 import 'quizzBrain2.dart';
 import 'quizzBrain3.dart';
 QuizzBrain quizzBrain = QuizzBrain();
@@ -37,7 +37,7 @@ class MultiQuizzer extends StatelessWidget {
                    padding: const EdgeInsets.all(15.0),
                    child: ElevatedButton(
                      style: TextButton.styleFrom(backgroundColor: Colors.indigo.shade500),
-                    child: const Text('HTML'),
+                    child: const Text('Quizz 1'),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -53,7 +53,7 @@ class MultiQuizzer extends StatelessWidget {
               padding: const EdgeInsets.all(15.0),
               child: ElevatedButton(
                 style: TextButton.styleFrom(backgroundColor: Colors.indigo.shade500),
-                child: const Text('CSS'),
+                child: const Text('Quizz 2'),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -69,7 +69,7 @@ class MultiQuizzer extends StatelessWidget {
                 padding: const EdgeInsets.all(15.0),
                 child: ElevatedButton(
                   style: TextButton.styleFrom(backgroundColor: Colors.indigo.shade500),
-                  child: const Text('PHP'),
+                  child: const Text('Quizz 3'),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -108,16 +108,29 @@ class _QuizzerState extends State<Quizzer> {
       quizzBrain.nextQuestion();
     });
     if (IconResult.length == quizzBrain.getQuestionLength()) {
-      Alert(
-        context: context,
-        title: "Félicitations",
-        desc: "Quiz terminé. Vous avez eu $score bonnes réponses.",
-      ).show();
-      score = 0;
-      quizzBrain.reset();
-      IconResult = [];
+        Alert(
+            context: context,
+            title: "Félicitations",
+            desc: "Quiz terminé. Vous avez eu $score bonnes réponses.",
+            buttons: [
+              DialogButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  quizzBrain.reset();
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  "Fermez",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              )
+            ]).show();
+        score = 0;
+        IconResult = [];
+      }
     }
-  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +139,7 @@ class _QuizzerState extends State<Quizzer> {
       appBar: AppBar(
         backgroundColor: Colors.indigo.shade700,
         title: Center(
-            child: const Text('HTML')
+            child: const Text('Quizz 1')
         ),
       ),
       body: Column(
@@ -214,12 +227,23 @@ class _Quizzer2State extends State<Quizzer2> {
     });
     if (IconResult.length == quizzBrain2.getQuestionLength2()) {
       Alert(
-        context: context,
-        title: "Félicitations",
-        desc: "Quiz terminé. Vous avez eu $score2 bonnes réponses.",
-      ).show();
+          context: context,
+          title: "Félicitations",
+          desc: "Quiz terminé. Vous avez eu $score2 bonnes réponses.",
+          buttons: [
+            DialogButton(
+              onPressed: () {
+                Navigator.pop(context);
+                quizzBrain.reset();
+                Navigator.pop(context);
+              },
+              child: Text(
+                "Fermez",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+            )
+          ]).show();
       score2 = 0;
-      quizzBrain2.reset2();
       IconResult = [];
     }
   }
@@ -231,7 +255,7 @@ class _Quizzer2State extends State<Quizzer2> {
       appBar: AppBar(
         backgroundColor: Colors.indigo.shade700,
         title: Center(
-            child: const Text('HTML')
+            child: const Text('Quizz 2')
         ),
       ),
       body: Column(
@@ -320,12 +344,23 @@ class _Quizzer3State extends State<Quizzer3> {
     });
     if (IconResult.length == quizzBrain3.getQuestionLength3()) {
       Alert(
-        context: context,
-        title: "Félicitations",
-        desc: "Quiz terminé. Vous avez eu $score3 bonnes réponses.",
-      ).show();
+          context: context,
+          title: "Félicitations",
+          desc: "Quiz terminé. Vous avez eu $score3 bonnes réponses.",
+          buttons: [
+            DialogButton(
+              onPressed: () {
+                Navigator.pop(context);
+                quizzBrain.reset();
+                Navigator.pop(context);
+              },
+              child: Text(
+                "Fermez",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+            )
+          ]).show();
       score3 = 0;
-      quizzBrain3.reset3();
       IconResult = [];
     }
   }
@@ -337,7 +372,7 @@ class _Quizzer3State extends State<Quizzer3> {
       appBar: AppBar(
         backgroundColor: Colors.indigo.shade700,
         title: Center(
-            child: const Text('HTML')
+            child: const Text('Quizz 3')
         ),
       ),
       body: Column(
