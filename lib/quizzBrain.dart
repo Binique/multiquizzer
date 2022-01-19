@@ -3,10 +3,10 @@ import 'question.dart';
 class  QuizzBrain {
   int _questionNumber = 0;
   List<Question>_Questions= [
-    Question('Question 1', true),
-    Question('Question 2', false),
-    Question('Question 3', false),
-    Question('Question 4', true),
+    Question('Le piton des neiges est un volcan de la Réunion ?', true),
+    Question('Flutter permet de faire des applications web également ?', true),
+    Question('Php est le language utilisé par Flutter ?', false),
+    Question('Le piton de la fournaise est un volcan de la Réunion ?', true),
   ];
 
   String getQuestionText() {
