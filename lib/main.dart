@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'quizzBrain.dart';
 import 'package:rflutter_alert/rflutter_alert.dart' show Alert;
 import 'quizzBrain2.dart';
+import 'quizzBrain3.dart';
 QuizzBrain quizzBrain = QuizzBrain();
 QuizzBrain2 quizzBrain2 = QuizzBrain2();
+QuizzBrain3 quizzBrain3 = QuizzBrain3();
 
 void main() {
   runApp(const MaterialApp(
@@ -71,7 +73,7 @@ class MultiQuizzer extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const Quizzer2()),
+                      MaterialPageRoute(builder: (context) => const Quizzer3()),
                     );
                   },
                 ),
@@ -294,6 +296,113 @@ class _Quizzer2State extends State<Quizzer2> {
 
 
 }
+
+class Quizzer3 extends StatefulWidget {
+  const Quizzer3 ({Key? key}) : super(key: key);
+  @override
+  _Quizzer3State createState() => _Quizzer3State();
+}
+
+class _Quizzer3State extends State<Quizzer3> {
+  List<Icon> IconResult = [];
+  int score3 = 0;
+
+  checkAnswer(bool reponseUtilisateur3) {
+    bool bonneReponse3 = quizzBrain3.getQuestionAnswer3();
+    setState(() {
+      if (bonneReponse3 == reponseUtilisateur3) {
+        score3++;
+        IconResult.add(Icon(Icons.check, color: Colors.green));
+      } else {
+        IconResult.add(Icon(Icons.close, color: Colors.red));
+      }
+      quizzBrain3.nextQuestion3();
+    });
+    if (IconResult.length == quizzBrain3.getQuestionLength3()) {
+      Alert(
+        context: context,
+        title: "Félicitations",
+        desc: "Quiz terminé. Vous avez eu $score3 bonnes réponses.",
+      ).show();
+      score3 = 0;
+      quizzBrain3.reset3();
+      IconResult = [];
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.indigo.shade200,
+      appBar: AppBar(
+        backgroundColor: Colors.indigo.shade700,
+        title: Center(
+            child: const Text('HTML')
+        ),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            flex: 5,
+            child:
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Center(
+                child: Text( quizzBrain3.getQuestionText3(),
+                  style: TextStyle(color: Colors.white,fontSize: 25.0),textAlign: TextAlign.center,
+                ),
+
+              ),
+            ),
+          ),
+          Expanded(
+            child:
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: TextButton(
+                onPressed: () {
+                  checkAnswer(true);
+                },
+                style: TextButton.styleFrom(backgroundColor: Colors.green),
+
+                child:
+                const Text('Vrai',style: TextStyle(color: Colors.white,fontSize: 20),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child:
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: TextButton(
+                onPressed: () {
+                  checkAnswer(false);
+                },
+                style: TextButton.styleFrom(backgroundColor: Colors.red),
+                child:
+                const Text('Faux',style: TextStyle(color: Colors.white,fontSize: 20),
+                ),
+
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              children: IconResult
+              ,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+
+}
+
 
 
 
